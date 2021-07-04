@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="content">
+    <h1>新增頻道資料</h1>
+    <form action="\channelRetreive\" method="POST">
+        {% csrf_token %}
+        影片清單url：<input type="text" size="100" name="video_url"><br/>
+        <br/>
+        <input type="submit" onclick="return dbConfirm('確定執行?')" value="取得頻道資料" name="get_channel">
+    </form>
+    <hr>
+    <form action="\channelInfoDB\" method="POST">
+    {% csrf_token %}
+    頻道名稱：<input type="text" name="channel_title" size="25" value="{{data.channel_title}}"><br/>
+    清單名稱：<input type="text" name="playlist_title" size="35" value="{{data.playlist_title}}"><br/>
+    影片總數：<input type="text" name="totalResult" size="25" value="{{data.totalResult}}" readonly><br/>
+    頻道圖片:<input type="text" name="channel_img" size="35" value="{{data.channel_img}}" readonly><br/>
+    頻道ID：<input type="text" name="channel_ID" size="35" value="{{data.channel_ID}}" readonly><br/>
+    清單ID：<input type="text" name="playlist_ID" size="35" value="{{data.playlist_ID}}" readonly><br/>
+    <br/>
+    <input type="submit" onclick="return dbConfirm('確定將資料寫入資料庫?')" value="新增至資料庫" name="add_db">
+    <input type="button" onclick="location.href='/videoAppHome/'" value="返回">
+    </form>
+    <h1>{{message}}</h1><br/>
+</div>
+{% endblock %}

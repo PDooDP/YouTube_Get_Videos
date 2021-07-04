@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="content">
+<h1 align="center">紀錄</h1>
+<hr>
+<table border="1" class="table_center">
+    <tr>
+        <th width="150px">問題所在頁面</th><th width="400px">問題名稱</th><th width="200px">暫定解決方式</th><th width="100px">障礙</th>
+    </tr>
+    <tr>
+        <td width="150px">1. 新增頻道</td><td width="400px">使用者輸入空白網址時，程式直接掛掉</td><td width="200px">做IF判斷</td><td width="100px"></td>
+    </tr>
+    <tr>
+        <td width="150px">2. 新增頻道</td><td width="400px">表單完全沒有輸入值時，點擊"新增置資料庫"按鈕時，程式出現MultiValueDictKeyError。</td><td width="200px">表單無內容，無法寫入字典，修改整個流程?</td><td width="100px"></td>
+    </tr>
+    <tr>
+        <td width="150px">3. 頻道影片列表</td><td width="400px">若點讚、留言、點閱率等統計資料為空值時，程式出現錯誤。</td><td width="200px">做IF判斷</td><td width="100px"></td> 
+    </tr>
+    <tr>
+        <td width="150px">4. views.url</td><td width="400px">將videoShowDetails和videoTodayHandle函式合併在一起。</td><td width="200px">做IF判斷, 代入參數做比對。</td><td width="100px"></td>
+    </tr>
+    <tr>
+        <td width="150px">5. 我的最愛</td><td width="400px">將欄位影片ID和清單ID改成頻道影片列表的網址。</td><td width="200px">看效果如何。</td><td width="100px"></td>
+    </tr>
+    <tr>
+        <td width="150px">6. 資料顯示video_class</td><td width="400px">一個頁面少於20個資料時, json檔不會出現nextPageToken的欄位</td><td width="200px">使用if "nextPageToken" not in ret_list方式檢查欄位是否存在</td><td width="100px"></td>
+    </tr>
+</table>
+</div>
+{% endblock %}

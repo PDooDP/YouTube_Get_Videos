@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Daily</title>
+    <script type="text/javascript" language="JavaScript">
+		function dbConfirm(myMsg)
+        {   
+			return confirm(myMsg);
+		}
+    </script>
+</head>
+<style>
+    .sidenav {
+        height: 100%;
+        width: 200px;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        background-color: #111;
+        overflow-x: hidden;
+        padding-top: 20px;
+    }
+
+    .sidenav a{
+        padding: 6px 6px 6px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+    }
+
+    .sidenav a:hover{
+        color: #f1f1f1;
+    }
+
+    .main{
+        background-color: #111;
+        margin-left: 200px;
+    }
+
+    .main h2, p{
+        color: #818181;
+    }
+
+    .content{
+        margin-left: 200px;
+    }
+
+    .table_center{
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+<body>
+<div class="sidenav">
+    <a href="/videoAppHome/">首頁</a>
+    <a href='/videoShowToday/'>今日最新</a>
+    <a href='/videoShow/'>頻道列表</a>
+    <a href='/videoAddForm/'>新增頻道</a>
+    <a href='/videoEdit/'>修改資料</a>
+    <!-- <a href='/videoDelete/'>刪除資料</a> -->
+</div>
+<div class="main">
+    <h2>YouTube Daily New Videos</h2>        
+    <p>YouTube每日最新影片</p>
+</div>
+{% block content %} {% endblock %}
+</body>
+</html>

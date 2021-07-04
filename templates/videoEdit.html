@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="content">
+    <h1 align="center">變更頻道資料</h1>
+    <table border="1px" class="table_center">
+    <tr>
+        <th>動作</th><th>頻道縮圖</th><th>頻道名稱</th><th>影片清單名稱</th>
+        <!-- <th>頻道本日最新</th> -->
+    </tr>
+    {% for item in data %}
+    <form action="\videoEditActions\{{item.0}}" method="POST">
+    {% csrf_token %}
+    <tr>
+        <td width="200px" align="center">
+            <select name="actions">
+                <option value="edit">修改</option>
+                <option value="delete">刪除</option>
+            </select>
+            <input type="submit" onclick="return dbConfirm('確定執行變更?')" name="update" value="執行"><br/>
+            <input type="hidden" name="id" value="{{item.0}}"><br/>
+        </td>
+        <td width="200px" align="center"><img src="{{item.6}}"></td>
+        <td width="200px" align="center">{{item.3}}</td>
+        <td width="250px" align="center">{{item.4}}</td>
+        <!-- <td width="150px" align="center"><a href="/videoShowToday/{{item.2}}">頻道今日最新</a></td> -->
+    </tr>
+    </form>
+    {% empty %}
+    <tr>
+        <td colspan="3" align="center">查無資料</td>
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+{% endblock %}
+

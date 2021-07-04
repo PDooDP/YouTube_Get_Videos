@@ -1,0 +1,41 @@
+<!-- "video_ID": video_id,
+"video_img": video_img,
+"video_url": video_url,
+"title": title,
+"date": date,
+"viewCount": viewCount,
+"like": likeCount,
+"dislike": dislikeCount,
+"comments": commentCount } -->
+{% extends "base.html" %}
+{% block content %}
+<div class="content">
+    <h1 align="center">頻道影片列表</h1>
+    <table border="1px" class="table_center">
+    <tr>
+        <th>影片縮圖</th>
+        <th>影片名稱</th>
+        <th>上架日期</th>
+        <th>觀看數</th>
+        <th>留言數</th>
+        <th>點讚數</th>
+        <th>倒讚數</th>
+    </tr>
+    {% for item in video_infos %}
+    <tr>
+        <td width="100px" align="center"><img src="{{item.video_img}}"></td>
+        <td width="300px" align="center"><a href="https://www.youtube.com/watch?v={{item.video_ID}}" target="_blank">{{item.title}}</td>
+        <td width="100px" align="center">{{item.date}}</td>
+        <td width="100px" align="center">{{item.viewCount}}</td>
+        <td width="100px" align="center">{{item.comments}}</td>
+        <td width="100px" align="center">{{item.like}}</td>
+        <td width="100px" align="center">{{item.dislike}}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="7" align="center">查無資料</td>
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+{% endblock %}

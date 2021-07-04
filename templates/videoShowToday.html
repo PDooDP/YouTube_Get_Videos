@@ -1,0 +1,47 @@
+<!-- "video_ID": video_id,
+"video_img": video_img,
+"video_url": video_url,
+"title": title,
+"date": date,
+"viewCount": viewCount,
+"like": likeCount,
+"dislike": dislikeCount,
+"comments": commentCount } -->
+{% extends "base.html" %}
+{% block content %}
+<div class="content">
+    <h1 align="center">今日最新上傳影片列表</h1>
+    <table border="1px" class="table_center">
+    <tr>
+        <th>頻道名稱</th>
+        <th>影片縮圖</th>
+        <th>影片名稱</th>
+        <th>上架日期</th>
+        <th>觀看數</th>
+        <th>留言數</th>
+        <th>點讚數</th>
+        <th>倒讚數</th>
+    </tr>
+    <!-- 字典型態需要加入欄位名稱 -->
+    {% for item in today_infos %}
+    <tr>
+        <td width="150px" align="center"><h3>{{item.channel_title}}</h2></td>
+        <td width="100px" align="center"><img src="{{item.video_img}}"></td>
+        <td width="250px" align="center"><a href="https://www.youtube.com/watch?v={{item.video_ID}}" target="_blank">{{item.title}}</td>
+        <td width="100px" align="center">{{item.date}}</td>
+        <td width="75px" align="center">{{item.viewCount}}</td>
+        <td width="75px" align="center">{{item.comments}}</td>
+        <td width="75px" align="center">{{item.like}}</td>
+        <td width="75px" align="center">{{item.dislike}}</td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="8" align="center">無最新的影片</td>
+    </tr>
+    {% endfor %}
+    </table>
+    <br/>
+    <p align="center"><input type="button" onclick="location.href='/videoShow/'" value="返回"></p><br/>
+    <br/>
+</div>
+{% endblock %}

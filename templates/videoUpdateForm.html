@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    input[type="text"], textarea {
+        background-color : #3cebf1; 
+    }
+</style>
+<div class="content">
+    <h1 align="center">修改頻道資料</h1>
+<form action="\videoEditHandle\{{pid}}" method="POST">
+{% csrf_token %}
+    <table border="1px" class="table_center">
+        <tr>
+            <th width="100px">頻道縮圖</th><th width="100px">頻道名稱</th><th width="100px">影片清單名稱</th><th width="100px">動作</th>
+        </tr>
+        {% for item in data %}
+        <tr align="center">
+            <td width="100px" align="center"><img src="{{item.6}}"></td>
+            <td width="250px" align="center"><input type="text" name = "channel_title" value="{{item.3}}"></td>
+            <td width="250px" align="center"><input type="text" name= "playlist_title" value="{{item.4}}"></td>
+            <td>
+                <input type="submit" onclick="return dbConfirm('確定執行變更?')" value="確認修改"><br/>
+                <br/>
+                <input type="button" onclick="location.href='/videoEdit/'" value="返回">
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="3" align="center">查無資料</td>
+        </tr>
+        {% endfor %}
+        </table>
+</form>
+
+</div>
+{% endblock %}
+

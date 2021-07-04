@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="content">
+    <h1 align="center">我的最愛</h1>
+    <table border="1px" class="table_center">
+    <tr>
+        <th>頻道縮圖</th><th>頻道名稱</th><th>頻道影片清單</th><th>頻道本日最新</th><th>動作</th>
+    </tr>
+    {% for item in data %}
+    <tr>
+        <td width="150px" align="center"><img src="{{item.6}}"></td>
+        <td width="300px" align="center"><a href="{{item.5}}" target="_blank">{{item.3}}</td>
+        <td width="300px" align="center"><a href="https://www.youtube.com/playlist?list={{item.2}}&playnext=1&index=1" target="_blank">{{item.4}}</td>
+        <td width="150px" align="center"><a href="/videoShowToday/{{item.2}}">頻道今日最新</a></td>
+        <td width="150px" align="center"><a href="/videoShowDetails/{{item.2}}" onclick="return dbConfirm('依影片數量的多寡，可能需要花費數分鐘載入。確定執行本地顯示?')">本地顯示</a></td>
+    </tr>
+    {% empty %}
+    <tr>
+        <td colspan="5" align="center">查無資料</td>
+    </tr>
+    {% endfor %}
+    </table>
+</div>
+{% endblock %}
+
+    <!-- <input type="button" onclick="location.href='/videoUpdateForm/'" value="更新資料" readonly>
+    <input type="button" onclick="location.href='/videoAddForm/'" value="新增頻道">
+    <input type="button" onclick="location.href='/videoEdit/'" value="修改資料">
+    <input type="button" onclick="location.href='/videoDelete/'" value="刪除資料"> -->
+
+    <!-- <select name="playlist_ID">
+        <option value="BikeIn">BikeIn資訊網</option>
+        <option value="Plumber">水電爸爸</option>
+    </select>
+    <br/>
+    如清單內無想觀看的頻道，請輸入Youtube頻道網址抓取影片。<br/>
+    <input type="text" name="video_url">
+    <input type="submit" value="取得影片資料"> -->
+    <!-- {{video_ids}} -->
+    <!-- {{video_info}} -->
+    <!-- <br/>
+    影片顯示區
+    <table border="1">
+    <tr>
+        <th>頻道名稱</th>
+        <th>影片清單ID</th>
+    </tr>
+    <tr>
+        <td>{{channel_Name}}</td>
+        <td>{{playlist_ID}}</td>
+    </tr>
+    {% for i in video_ids %}
+    <tr>
+        <td colspan="2">
+            {{forloop.counter}}: <a href="https://www.youtube.com/watch?v={{i}}">https://www.youtube.com/watch?v={{i}}</a> 
+        </td>
+    </tr>
+    {% endfor %}
+    </tr>
+    </table>
+    <br/> -->
+
+
