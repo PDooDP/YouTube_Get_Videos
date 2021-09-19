@@ -133,25 +133,25 @@ class videoRetreiver():
                                 next_url = "{}playlistItems?part={}&playlistId={}&maxResults={}&pageToken={}&key={}".format(self.base_url,part_text,playlist_id,maxResults,next_tokens,self.YOUTUBE_API_KEY)
         # =======================================================
         elif status == "details":   # 取得頻道(播放清單)內所有的影片
-                if "nextPageToken" not in ret_list:
-                    for i in range(len(ret_list["items"])): # 先取得第一頁的影片資料, 並將新的nextPageToken放入next_url變數後, 再呼叫新的json資料進來
+            if "nextPageToken" not in ret_list:
+                for i in range(len(ret_list["items"])): # 先取得第一頁的影片資料, 並將新的nextPageToken放入next_url變數後, 再呼叫新的json資料進來
+                    video_ids.append(ret_list["items"][i]["contentDetails"]["videoId"])
+                    next_url = f"{self.base_url}playlistItems?part={part_text}&playlistId={playlist_id}&maxResults={maxResults}&key={self.YOUTUBE_API_KEY}"
+            else:
+                next_tokens = ret_list["nextPageToken"]
+                for j in range(num):
+                    if next_url is not "":  # 第二頁的影片資料
+                        ret_list = self.loadJson(next_url)
+                        if "nextPageToken" in ret_list:
+                            next_tokens = ret_list["nextPageToken"]
+                    for i in range(len(ret_list["items"])):
                         video_ids.append(ret_list["items"][i]["contentDetails"]["videoId"])
-                        next_url = f"{self.base_url}playlistItems?part={part_text}&playlistId={playlist_id}&maxResults={maxResults}&key={self.YOUTUBE_API_KEY}"
-                else:
-                    next_tokens = ret_list["nextPageToken"]
-                    for j in range(num):
-                        if next_url is not "":  # 第二頁的影片資料
-                            ret_list = self.loadJson(next_url)
-                            if "nextPageToken" in ret_list:
-                                next_tokens = ret_list["nextPageToken"]
-                        for i in range(len(ret_list["items"])):
-                            video_ids.append(ret_list["items"][i]["contentDetails"]["videoId"])
-                            next_url = f"{self.base_url}playlistItems?part={part_text}&playlistId={playlist_id}&maxResults={maxResults}&pageToken={next_tokens}&key={self.YOUTUBE_API_KEY}"
+                        next_url = f"{self.base_url}playlistItems?part={part_text}&playlistId={playlist_id}&maxResults={maxResults}&pageToken={next_tokens}&key={self.YOUTUBE_API_KEY}"
         return video_ids
 
     # === 取得影片統計資料 ===
     # 取得影片ID，尋找出影片資訊：標題、點閱數、按讚數、倒讚數等
-    def YT_videoStats(self,video_ids, part_text, today_infos = []):
+    def YT_videoStats(self,video_ids, part_text, today_infos=[]):
         for i in range(len(video_ids)):
             video_id = video_ids[i]
             video_url = f'{self.base_url}videos?part={part_text}&id={video_id}&key={self.YOUTUBE_API_KEY}'

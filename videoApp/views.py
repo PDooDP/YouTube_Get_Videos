@@ -36,11 +36,13 @@ def videoShow(request):
 # 取得頻道總影片列表 (可以在更穩定的版本內加入)
 # OK
 def videoShowDetails(request,playlist_ID=-1):
+    # 為避免重複資料，重制清單
+    today_infos = []
     # 尋找頻道影片列表內所有影片的ID
     video_ids = yt.YT_videos_getID("details", "contentDetails", playlist_ID)
 
     # 取得所有的影片ID後，再尋找出影片資訊：標題、點閱數、按讚數、倒讚數等===
-    video_infos = yt.YT_videoStats(video_ids,"snippet,statistics")
+    video_infos = yt.YT_videoStats(video_ids,"snippet,statistics", today_infos)
     return render(request, "videoShowDetails.html", {"video_infos": video_infos})
 
 # 取得資料庫內所有頻道在1日內上傳的最新影片
