@@ -10,9 +10,6 @@ from videoApp.dbConn_class import *
 
 # Create your views here.
 
-# YOUTUBE_API_KEY = "AIzaSyAvE_IYKLSmKPvlz12xVsJdzkMHtzw5DvQ"
-# base_url = "https://www.googleapis.com/youtube/v3/"
-
 # 初始化程式
 def main():
     global db, yt
