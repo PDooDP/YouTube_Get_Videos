@@ -5,7 +5,7 @@ class dbConn():
         pass
 
     def connStart(self):
-        self.db = pymysql.connect(host="127.0.0.1", port=3307, user="testUser", passwd="user123456", database="youtube_dailytest")
+        self.db = pymysql.connect(host="Your_IP", port=port, user="Your_UserName", passwd="Your_Password", database="Your_DataBase")
         self.c = self.db.cursor()
 
     def connEnd(self):
