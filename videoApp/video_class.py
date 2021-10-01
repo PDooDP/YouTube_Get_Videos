@@ -5,7 +5,7 @@ from datetime import datetime
 class videoRetreiver():
     def __init__(self):
         self.base_url = "https://www.googleapis.com/youtube/v3/"
-        self.YOUTUBE_API_KEY = "AIzaSyAvE_IYKLSmKPvlz12xVsJdzkMHtzw5DvQ"
+        self.YOUTUBE_API_KEY = "Your_YT_API_KEY"
 
     # === 取得json資料 ===
     def loadJson(self,url):
@@ -38,7 +38,6 @@ class videoRetreiver():
         return Id
 
     # === 取得播放清單名稱 ===
-    # https://youtube.googleapis.com/youtube/v3/playlists?part=snippet&id=UUVizi411ybhS3LKxX6DocDA&maxResults=20&key=AIzaSyAvE_IYKLSmKPvlz12xVsJdzkMHtzw5DvQ
     def YT_playlist_title(self, playlist_id, part_text = "snippet"):
         playlist_url = f"{self.base_url}playlists?part={part_text}&id={playlist_id}&key={self.YOUTUBE_API_KEY}"
 
